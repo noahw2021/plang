@@ -22,6 +22,11 @@ typedef struct _codegenctx {
 }codegenctx_t;
 extern codegenctx_t* cgctx;
 
+void cg_init(void);
+void cg_shutdown(void);
+void cg_assemblygen(FILE* Output);
+void cg_codegen(FILE* Output);
+
 void cg_emitbyte(byte Byte);
 void cg_emitstr(const char* String);
 
