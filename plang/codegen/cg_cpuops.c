@@ -6,18 +6,108 @@
 //
 #include "codegen.h"
 
-void cge_set(int Destination, int Source);
-void cge_ldwm(int Destination, int Address);
-void cge_stwm(int Destination, int Address);
-void cge_ldbm(int Destination, int Address);
-void cge_stbm(int Destination, int Address);
-void cge_or(int Destination, int Source);
-void cge_and(int Destination, int Source);
-void cge_not(int Destination, int Source);
-void cge_add(int Destination, int Source);
-void cge_sub(int Destination, int Source);
-void cge_mul(int Destination, int Source);
-void cge_div(int Destination, int Source);
+void cge_set(int Destination, int Source) {
+	union {
+		byte Raw;
+		struct {
+			byte Register0 : 4;
+			byte Register1 : 4;
+		};
+	}Regmap;
+	Regmap.Register0 = Destination;
+	Regmap.Register1 = Source;
+	cg_emitbyte(0x00);
+	cg_emitbyte(Regmap.Raw);
+	return;
+}
+void cge_ldwm(int Destination, int Address) {
+	union {
+		byte Raw;
+		struct {
+			byte Register0 : 4;
+			byte Register1 : 4;
+		};
+	}Regmap;
+	Regmap.Register0 = Destination;
+	Regmap.Register1 = Address;
+	cg_emitbyte(0x01);
+	cg_emitbyte(Regmap.Raw);
+	return;
+}
+void cge_stwm(int Destination, int Address) {
+	union {
+		byte Raw;
+		struct {
+			byte Register0 : 4;
+			byte Register1 : 4;
+		};
+	}Regmap;
+	Regmap.Register0 = Destination;
+	Regmap.Register1 = Address;
+	cg_emitbyte(0x02);
+	cg_emitbyte(Regmap.Raw);
+	return;
+}
+void cge_ldbm(int Destination, int Address) {
+	union {
+		byte Raw;
+		struct {
+			byte Register0 : 4;
+			byte Register1 : 4;
+		};
+	}Regmap;
+	Regmap.Register0 = Destination;
+	Regmap.Register1 = Address;
+	cg_emitbyte(0x03);
+	cg_emitbyte(Regmap.Raw);
+	return;
+}
+void cge_stbm(int Destination, int Address) {
+	union {
+		byte Raw;
+		struct {
+			byte Register0 : 4;
+			byte Register1 : 4;
+		};
+	}Regmap;
+	Regmap.Register0 = Destination;
+	Regmap.Register1 = Address;
+	cg_emitbyte(0x04);
+	cg_emitbyte(Regmap.Raw);
+	return;
+}
+void cge_or(int Destination, int Source) {
+	union {
+		byte Raw;
+		struct {
+			byte Register0 : 4;
+			byte Register1 : 4;
+		};
+	}Regmap;
+	Regmap.Register0 = Destination;
+	Regmap.Register1 = Source;
+	cg_emitbyte(0x05);
+	cg_emitbyte(Regmap.Raw);
+	return;
+}
+void cge_and(int Destination, int Source) {
+
+}
+void cge_not(int Destination, int Source) {
+
+}
+void cge_add(int Destination, int Source) {
+
+}
+void cge_sub(int Destination, int Source) {
+
+}
+void cge_mul(int Destination, int Source) {
+
+}
+void cge_div(int Destination, int Source) {
+
+}
 void cge_seti(int Destination, unsigned long long Source);
 void cge_ldwmi(int Register, unsigned long long Pointer);
 void cge_stwmi(int Register, unsigned long long Pointer);
