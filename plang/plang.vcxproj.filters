@@ -21,5 +21,31 @@
     <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ui\ui_compile.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="codegen\cg_reg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="codegen\cg_engine.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="syntax.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ctx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\ui_int.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parse\parse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="codegen\codegen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

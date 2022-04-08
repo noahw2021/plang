@@ -1,0 +1,9 @@
+FUNCTION OsMain(32 Argument): 32 ; u32 OsMain(u32 Argument)
+	VAR 32 VariableName = I(410) ; u32 VariableName = 410;
+	VAR 32 VariableTwo = V(Argument) ; u32 VariableTwo = VariableName
+	RETURN (I(482819) - (VariableName + VariableTwo)) ; return (482819 - (VariableName + VariableTwo))
+FUNCTION Another(): 0 ; void Another(void)
+	VAR 32 ReturnValue = X; ; u32 ReturnValue
+	CALL OsMain(I(30)) -> ReturnValue ; ReturnValue = OsMain(30)
+	32:[0x5000] = V(ReturnValue) ; *(unsigned long*)0x5000 = ReturnValue
+	RETURN
