@@ -5,108 +5,247 @@
 //  Created by Noah Wooten on 4/8/22.
 //
 #include "codegen.h"
+#include "cg_psin.h"
 
 void cge_set(int Destination, int Source) {
-	union {
-		byte Raw;
-		struct {
-			byte Register0 : 4;
-			byte Register1 : 4;
-		};
-	}Regmap;
-	Regmap.Register0 = Destination;
-	Regmap.Register1 = Source;
-	cg_emitbyte(0x00);
-	cg_emitbyte(Regmap.Raw);
+	if (!cgctx->Flags.GenerateAssembly) {
+		union {
+			byte Raw;
+			struct {
+				byte Register0 : 4;
+				byte Register1 : 4;
+			};
+		}Regmap;
+		Regmap.Register0 = Destination;
+		Regmap.Register1 = Source;
+		cg_emitbyte(SET);
+		cg_emitbyte(Regmap.Raw);
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "SET r%i, r%i\n", Destination, Source);
+		return;
+	}
 	return;
 }
 void cge_ldwm(int Destination, int Address) {
-	union {
-		byte Raw;
-		struct {
-			byte Register0 : 4;
-			byte Register1 : 4;
-		};
-	}Regmap;
-	Regmap.Register0 = Destination;
-	Regmap.Register1 = Address;
-	cg_emitbyte(0x01);
-	cg_emitbyte(Regmap.Raw);
-	return;
+	if (!cgctx->Flags.GenerateAssembly) {
+		union {
+			byte Raw;
+			struct {
+				byte Register0 : 4;
+				byte Register1 : 4;
+			};
+		}Regmap;
+		Regmap.Register0 = Destination;
+		Regmap.Register1 = Address;
+		cg_emitbyte(LDWM);
+		cg_emitbyte(Regmap.Raw);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "LDWM r%i, r%i\n", Destination, Address);
+		return;
+	}
 }
 void cge_stwm(int Destination, int Address) {
-	union {
-		byte Raw;
-		struct {
-			byte Register0 : 4;
-			byte Register1 : 4;
-		};
-	}Regmap;
-	Regmap.Register0 = Destination;
-	Regmap.Register1 = Address;
-	cg_emitbyte(0x02);
-	cg_emitbyte(Regmap.Raw);
-	return;
+	if (!cgctx->Flags.GenerateAssembly) {
+		union {
+			byte Raw;
+			struct {
+				byte Register0 : 4;
+				byte Register1 : 4;
+			};
+		}Regmap;
+		Regmap.Register0 = Destination;
+		Regmap.Register1 = Address;
+		cg_emitbyte(STWM);
+		cg_emitbyte(Regmap.Raw);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "STWM r%i, r%i\n", Destination, Address);
+		return;
+	}
 }
 void cge_ldbm(int Destination, int Address) {
-	union {
-		byte Raw;
-		struct {
-			byte Register0 : 4;
-			byte Register1 : 4;
-		};
-	}Regmap;
-	Regmap.Register0 = Destination;
-	Regmap.Register1 = Address;
-	cg_emitbyte(0x03);
-	cg_emitbyte(Regmap.Raw);
-	return;
+	if (!cgctx->Flags.GenerateAssembly) {
+		union {
+			byte Raw;
+			struct {
+				byte Register0 : 4;
+				byte Register1 : 4;
+			};
+		}Regmap;
+		Regmap.Register0 = Destination;
+		Regmap.Register1 = Address;
+		cg_emitbyte(LDBM);
+		cg_emitbyte(Regmap.Raw);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "LDBM r%i, r%i\n", Destination, Address);
+		return;
+	}
 }
 void cge_stbm(int Destination, int Address) {
-	union {
-		byte Raw;
-		struct {
-			byte Register0 : 4;
-			byte Register1 : 4;
-		};
-	}Regmap;
-	Regmap.Register0 = Destination;
-	Regmap.Register1 = Address;
-	cg_emitbyte(0x04);
-	cg_emitbyte(Regmap.Raw);
-	return;
+	if (!cgctx->Flags.GenerateAssembly) {
+		union {
+			byte Raw;
+			struct {
+				byte Register0 : 4;
+				byte Register1 : 4;
+			};
+		}Regmap;
+		Regmap.Register0 = Destination;
+		Regmap.Register1 = Address;
+		cg_emitbyte(STBM);
+		cg_emitbyte(Regmap.Raw);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "STBM r%i, r%i\n", Destination, Address);
+		return;
+	}
 }
 void cge_or(int Destination, int Source) {
-	union {
-		byte Raw;
-		struct {
-			byte Register0 : 4;
-			byte Register1 : 4;
-		};
-	}Regmap;
-	Regmap.Register0 = Destination;
-	Regmap.Register1 = Source;
-	cg_emitbyte(0x05);
-	cg_emitbyte(Regmap.Raw);
-	return;
+	if (!cgctx->Flags.GenerateAssembly) {
+		union {
+			byte Raw;
+			struct {
+				byte Register0 : 4;
+				byte Register1 : 4;
+			};
+		}Regmap;
+		Regmap.Register0 = Destination;
+		Regmap.Register1 = Source;
+		cg_emitbyte(OR);
+		cg_emitbyte(Regmap.Raw);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "OR r%i, r%i\n", Destination, Source);
+		return;
+	}
 }
 void cge_and(int Destination, int Source) {
-
+	if (!cgctx->Flags.GenerateAssembly) {
+		union {
+			byte Raw;
+			struct {
+				byte Register0 : 4;
+				byte Register1 : 4;
+			};
+		}Regmap;
+		Regmap.Register0 = Destination;
+		Regmap.Register1 = Source;
+		cg_emitbyte(AND);
+		cg_emitbyte(Regmap.Raw);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "AND r%i, r%i\n", Destination, Source);
+		return;
+	}
 }
 void cge_not(int Destination, int Source) {
-
+	if (!cgctx->Flags.GenerateAssembly) {
+		union {
+			byte Raw;
+			struct {
+				byte Register0 : 4;
+				byte Register1 : 4;
+			};
+		}Regmap;
+		Regmap.Register0 = Destination;
+		Regmap.Register1 = Source;
+		cg_emitbyte(NOT);
+		cg_emitbyte(Regmap.Raw);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "NOT r%i, r%i\n", Destination, Source);
+		return;
+	}
 }
 void cge_add(int Destination, int Source) {
-
+	if (!cgctx->Flags.GenerateAssembly) {
+		union {
+			byte Raw;
+			struct {
+				byte Register0 : 4;
+				byte Register1 : 4;
+			};
+		}Regmap;
+		Regmap.Register0 = Destination;
+		Regmap.Register1 = Source;
+		cg_emitbyte(ADD);
+		cg_emitbyte(Regmap.Raw);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "ADD r%i, r%i\n", Destination, Source);
+		return;
+	}
 }
 void cge_sub(int Destination, int Source) {
-
+	if (!cgctx->Flags.GenerateAssembly) {
+		union {
+			byte Raw;
+			struct {
+				byte Register0 : 4;
+				byte Register1 : 4;
+			};
+		}Regmap;
+		Regmap.Register0 = Destination;
+		Regmap.Register1 = Source;
+		cg_emitbyte(SUB);
+		cg_emitbyte(Regmap.Raw);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "SUB r%i, r%i\n", Destination, Source);
+		return;
+	}
 }
 void cge_mul(int Destination, int Source) {
-
+	if (!cgctx->Flags.GenerateAssembly) {
+		union {
+			byte Raw;
+			struct {
+				byte Register0 : 4;
+				byte Register1 : 4;
+			};
+		}Regmap;
+		Regmap.Register0 = Destination;
+		Regmap.Register1 = Source;
+		cg_emitbyte(MUL);
+		cg_emitbyte(Regmap.Raw);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "MUL r%i, r%i\n", Destination, Source);
+		return;
+	}
 }
 void cge_div(int Destination, int Source) {
-
+	if (!cgctx->Flags.GenerateAssembly) {
+		union {
+			byte Raw;
+			struct {
+				byte Register0 : 4;
+				byte Register1 : 4;
+			};
+		}Regmap;
+		Regmap.Register0 = Destination;
+		Regmap.Register1 = Source;
+		cg_emitbyte(DIV);
+		cg_emitbyte(Regmap.Raw);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "DIV r%i, r%i\n", Destination, Source);
+		return;
+	}
 }
 void cge_seti(int Destination, unsigned long long Source);
 void cge_ldwmi(int Register, unsigned long long Pointer);
