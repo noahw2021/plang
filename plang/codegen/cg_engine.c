@@ -14,6 +14,7 @@ codegenctx_t* cgctx;
 void cg_init(void) {
 	cgctx = malloc(sizeof(codegenctx_t));
 	memset(cgctx, 0, sizeof(codegenctx_t));
+	cgctx->AssemblerNotation = 10;
 	return;
 }
 void cg_shutdown(void) {
@@ -21,8 +22,12 @@ void cg_shutdown(void) {
 	return;
 }
 void cg_assemblygen(FILE* Output) {
-	
+	cgctx->OutputHandle = Output;
+	cgctx->Flags.GenerateAssembly = 1;
+	return;
 }
 void cg_codegen(FILE* Output) {
-		
+	cgctx->OutputHandle = Output;
+	cgctx->Flags.GenerateAssembly = 0;
+	return;
 }

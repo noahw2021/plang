@@ -19,6 +19,7 @@ typedef struct _codegenctx {
 	}Flags;
 	FILE* OutputHandle;
 	u16 RegistersUsed;
+	byte AssemblerNotation;
 }codegenctx_t;
 extern codegenctx_t* cgctx;
 
