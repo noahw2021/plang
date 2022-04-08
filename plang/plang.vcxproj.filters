@@ -30,6 +30,9 @@
     <ClCompile Include="codegen\cg_emit.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="codegen\cg_cpuops.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="syntax.txt" />

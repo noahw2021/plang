@@ -108,6 +108,7 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="codegen\cg_cpuops.c" />
     <ClCompile Include="codegen\cg_emit.c" />
     <ClCompile Include="codegen\cg_engine.c" />
     <ClCompile Include="codegen\cg_reg.c" />
