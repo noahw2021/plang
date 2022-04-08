@@ -119,6 +119,7 @@
     <Text Include="syntax.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="codegen\cg_psin.h" />
     <ClInclude Include="codegen\codegen.h" />
     <ClInclude Include="ctx.h" />
     <ClInclude Include="parse\parse.h" />

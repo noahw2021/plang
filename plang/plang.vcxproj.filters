@@ -50,5 +50,8 @@
     <ClInclude Include="codegen\codegen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="codegen\cg_psin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
