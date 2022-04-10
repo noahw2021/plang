@@ -37,3 +37,17 @@ void cg_emitstr(const char* String) {
 		return;
 	}
 }
+void cg_emitword(u64 Data, byte Count) {
+	union {
+		u64 Big;
+		byte Small[8];
+	}MedInt;
+	MedInt.Big = Data;
+	for (int i = 0; i < Count; i++)
+		cg_emitbyte(MedInt.Small[i]);
+}
+char* cg_inttostr(u64 Data) {
+	char* Data = malloc(65);
+	sprintf(Data, "%llu", Data);
+	return Data;
+}

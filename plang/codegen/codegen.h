@@ -30,6 +30,8 @@ void cg_codegen(FILE* Output);
 
 void cg_emitbyte(byte Byte);
 void cg_emitstr(const char* String);
+void cg_emitword(u64 Data, byte Count);
+char* cg_inttostr(u64 Data);
 
 void cg_usereg(int Register);
 void cg_dropreg(int Register);
