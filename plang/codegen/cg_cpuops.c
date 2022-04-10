@@ -1045,7 +1045,8 @@ void cge_saii(unsigned char Register) {
 		return;
 	}
 	else {
-		fprintf(cgctx->OutputHandle, "SAII ")
+		fprintf(cgctx->OutputHandle, "SAII %s\n", cg_inttostr(Register));
+		return;
 	}
 }
 void cge_inc(int Register);
