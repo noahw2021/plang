@@ -9,6 +9,6 @@
 #include "codegen/codegen.h"
 int main(int argc, char** argv) {
 	cg_init();
-
 	cg_shutdown();
+	return;
 }
