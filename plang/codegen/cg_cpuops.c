@@ -1049,9 +1049,38 @@ void cge_saii(unsigned char Register) {
 		return;
 	}
 }
-void cge_inc(int Register);
-void cge_dec(int Register);
-void cge_sbn(void);
+void cge_inc(int Register) {
+	if (!cgctx->Flags.GenerateAssembly) {
+		cg_emitbyte(INC);
+		cg_emitbyte(Register);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "INC r%i\n", Register);
+		return;
+	}
+}
+void cge_dec(int Register) {
+	if (!cgctx->Flags.GenerateAssembly) {
+		cg_emitbyte(DEC);
+		cg_emitbyte(Register);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "DEC r%i\n", Register);
+		return;
+	}
+}
+void cge_sbn(void) {
+	if (!cgctx->Flags.GenerateAssembly) {
+		cg_emitbyte(SBN);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "SBN\n");
+		return;
+	}
+}
 void cge_iob(int Port, int Data);
 void cge_iib(int Port, int Data);
 void cge_iow(int Port, int Data);

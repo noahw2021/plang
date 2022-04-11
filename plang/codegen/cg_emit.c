@@ -47,7 +47,7 @@ void cg_emitword(u64 Data, byte Count) {
 		cg_emitbyte(MedInt.Small[i]);
 }
 char* cg_inttostr(u64 Data) {
-	char* Data = malloc(65);
-	sprintf(Data, "%llu", Data);
-	return Data;
+	char* LData = malloc(65);
+	sprintf(LData, "%llu", Data);
+	return LData;
 }
