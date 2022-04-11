@@ -123,10 +123,12 @@ void cge_ldhm(int Destination, int Pointer);
 void cge_sthm(int Destination, int Pointer);
 void cge_stqm(int Destination, int Pointer);
 void cge_ldqm(int Destination, int Pointer);
-void cge_ldhm(int Destination, unsigned long Data);
-void cge_sthm(int Destination, unsigned long Data);
-void cge_stqm(int Destination, unsigned short Data);
-void cge_ldqm(int Destination, unsigned short Data);
-
-
+void cge_ldhmi(int Destination, unsigned long Data);
+void cge_sthmi(int Destination, unsigned long Data);
+void cge_stqmi(int Destination, unsigned short Data);
+void cge_ldqmi(int Destination, unsigned short Data);
+void cge_sthmii(unsigned long long Destination, unsigned long Data);
+void cge_stqmii(unsigned long long Destination, unsigned short Data);
+void cge_stwmii(unsigned long long Destination, unsigned long long Data);
+void cge_stbmii(unsigned long long Destination, unsigned char Data);
 #endif /* codegen_h */

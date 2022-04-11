@@ -1081,17 +1081,305 @@ void cge_sbn(void) {
 		return;
 	}
 }
-void cge_iob(int Port, int Data);
-void cge_iib(int Port, int Data);
-void cge_iow(int Port, int Data);
-void cge_iiw(int Port, int Data);
-void cge_ios(int Port, int Data, int Length);
-void cge_iis(int Port, int String, int Length);
-void cge_ldhm(int Destination, int Pointer);
-void cge_sthm(int Destination, int Pointer);
-void cge_stqm(int Destination, int Pointer);
-void cge_ldqm(int Destination, int Pointer);
-void cge_ldhm(int Destination, unsigned long Data);
-void cge_sthm(int Destination, unsigned long Data);
-void cge_stqm(int Destination, unsigned short Data);
-void cge_ldqm(int Destination, unsigned short Data);
+void cge_iob(int Port, int Data) {
+	if (!cgctx->Flags.GenerateAssembly) {
+		union {
+			byte Raw;
+			struct {
+				byte Register0 : 4;
+				byte Register1 : 4;
+			};
+		}Regmap;
+		Regmap.Register0 = Port;
+		Regmap.Register1 = Data;
+		cg_emitbyte(IOB);
+		cg_emitbyte(Regmap.Raw);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "IOB r%i, r%i\n", Port, Data);
+		return;
+	}
+}
+void cge_iib(int Port, int Data) {
+	if (!cgctx->Flags.GenerateAssembly) {
+		union {
+			byte Raw;
+			struct {
+				byte Register0 : 4;
+				byte Register1 : 4;
+			};
+		}Regmap;
+		Regmap.Register0 = Port;
+		Regmap.Register1 = Data;
+		cg_emitbyte(IIB);
+		cg_emitbyte(Regmap.Raw);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "IIB r%i, r%i\n", Port, Data);
+		return;
+	}
+}
+void cge_iow(int Port, int Data) {
+	if (!cgctx->Flags.GenerateAssembly) {
+		union {
+			byte Raw;
+			struct {
+				byte Register0 : 4;
+				byte Register1 : 4;
+			};
+		}Regmap;
+		Regmap.Register0 = Port;
+		Regmap.Register1 = Data;
+		cg_emitbyte(IOW);
+		cg_emitbyte(Regmap.Raw);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "IOW r%i, r%i\n", Port, Data);
+		return;
+	}
+}
+void cge_iiw(int Port, int Data) {
+	if (!cgctx->Flags.GenerateAssembly) {
+		union {
+			byte Raw;
+			struct {
+				byte Register0 : 4;
+				byte Register1 : 4;
+			};
+		}Regmap;
+		Regmap.Register0 = Port;
+		Regmap.Register1 = Data;
+		cg_emitbyte(IIW);
+		cg_emitbyte(Regmap.Raw);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "IIW r%i, r%i\n", Port, Data);
+		return;
+	}
+}
+void cge_ios(int Port, int Data, int Length) {
+	if (!cgctx->Flags.GenerateAssembly) {
+		union {
+			byte Raw[2];
+			struct {
+				byte Register0 : 4;
+				byte Register1 : 4;
+				byte Register2 : 8;
+			};
+		}Regmap;
+		Regmap.Register0 = Port;
+		Regmap.Register1 = Data;
+		Regmap.Register2 = Length;
+		cg_emitbyte(IOS);
+		cg_emitbyte(Regmap.Raw[0]);
+		cg_emitbyte(Regmap.Raw[1]);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "IOS r%i, r%i, r%i\n", Port, Data, Length);
+		return;
+	}
+}
+void cge_iis(int Port, int String, int Length) {
+	if (!cgctx->Flags.GenerateAssembly) {
+		union {
+			byte Raw[2];
+			struct {
+				byte Register0 : 4;
+				byte Register1 : 4;
+				byte Register2 : 8;
+			};
+		}Regmap;
+		Regmap.Register0 = Port;
+		Regmap.Register1 = String;
+		Regmap.Register2 = Length;
+		cg_emitbyte(IIS);
+		cg_emitbyte(Regmap.Raw[0]);
+		cg_emitbyte(Regmap.Raw[1]);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "IIS r%i, r%i, r%i\n", Port, String, Length);
+		return;
+	}
+}
+void cge_ldhm(int Destination, int Pointer) {
+	if (!cgctx->Flags.GenerateAssembly) {
+		union {
+			byte Raw;
+			struct {
+				byte Register0 : 4;
+				byte Register1 : 4;
+			};
+		}Regmap;
+		Regmap.Register0 = Destination;
+		Regmap.Register1 = Pointer;
+		cg_emitbyte(LDHM);
+		cg_emitbyte(Regmap.Raw);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "LDHM r%i, r%i\n", Destination, Pointer);
+		return;
+	}
+}
+void cge_sthm(int Destination, int Pointer) {
+	if (!cgctx->Flags.GenerateAssembly) {
+		union {
+			byte Raw;
+			struct {
+				byte Register0 : 4;
+				byte Register1 : 4;
+			};
+		}Regmap;
+		Regmap.Register0 = Destination;
+		Regmap.Register1 = Pointer;
+		cg_emitbyte(STHM);
+		cg_emitbyte(Regmap.Raw);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "STHM r%i, r%i\n", Destination, Pointer);
+		return;
+	}
+}
+void cge_stqm(int Destination, int Pointer) {
+	if (!cgctx->Flags.GenerateAssembly) {
+		union {
+			byte Raw;
+			struct {
+				byte Register0 : 4;
+				byte Register1 : 4;
+			};
+		}Regmap;
+		Regmap.Register0 = Destination;
+		Regmap.Register1 = Pointer;
+		cg_emitbyte(STQM);
+		cg_emitbyte(Regmap.Raw);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "STQM r%i, r%i\n", Destination, Pointer);
+		return;
+	}
+}
+void cge_ldqm(int Destination, int Pointer) {
+	if (!cgctx->Flags.GenerateAssembly) {
+		union {
+			byte Raw;
+			struct {
+				byte Register0 : 4;
+				byte Register1 : 4;
+			};
+		}Regmap;
+		Regmap.Register0 = Destination;
+		Regmap.Register1 = Pointer;
+		cg_emitbyte(LDQM);
+		cg_emitbyte(Regmap.Raw);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "LDQM r%i, r%i\n", Destination, Pointer);
+		return;
+	}
+}
+void cge_ldhmi(int Destination, unsigned long Data) {
+	if (!cgctx->Flags.GenerateAssembly) {
+		cg_emitbyte(LDHMI);
+		cg_emitbyte(Destination);
+		cg_emitword(Data, 4);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "LDHMI r%i, %s\n", Destination, cg_inttostr(Data));
+		return;
+	}
+}
+void cge_sthmi(int Destination, unsigned long Data) {
+	if (!cgctx->Flags.GenerateAssembly) {
+		cg_emitbyte(STHMI);
+		cg_emitbyte(Destination);
+		cg_emitword(Data, 4);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "STHMI r%i, %s\n", Destination, cg_inttostr(Data));
+		return;
+	}
+}
+void cge_stqmi(int Destination, unsigned short Data) {
+	if (!cgctx->Flags.GenerateAssembly) {
+		cg_emitbyte(STQMI);
+		cg_emitbyte(Destination);
+		cg_emitword(Data, 2);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "STQMI r%i, %s\n", Destination, cg_inttostr(Data));
+		return;
+	}
+}
+void cge_ldqmi(int Destination, unsigned short Data) {
+	if (!cgctx->Flags.GenerateAssembly) {
+		cg_emitbyte(LDQMI);
+		cg_emitbyte(Destination);
+		cg_emitword(Data, 2);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "LDQMI r%i, %s\n", Destination, cg_inttostr(Data));
+		return;
+	}
+}
+void cge_sthmii(unsigned long long Destination, unsigned long Data) {
+	if (!cgctx->Flags.GenerateAssembly) {
+		cg_emitbyte(STHMII);
+		cg_emitword(Destination, 8);
+		cg_emitword(Data, 4);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "STHMII %s, %s\n", cg_inttostr(Destination), cg_inttostr(Data));
+		return;
+	}
+}
+void cge_stqmii(unsigned long long Destination, unsigned short Data) {
+	if (!cgctx->Flags.GenerateAssembly) {
+		cg_emitbyte(STQMII);
+		cg_emitword(Destination, 8);
+		cg_emitword(Data, 2);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "STQMII %s, %s\n", cg_inttostr(Destination), cg_inttostr(Data));
+		return;
+	}
+}
+void cge_stwmii(unsigned long long Destination, unsigned long long Data) {
+	if (!cgctx->Flags.GenerateAssembly) {
+		cg_emitbyte(STHMII);
+		cg_emitword(Destination, 8);
+		cg_emitword(Data, 8);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "STWMII %s, %s\n", cg_inttostr(Destination), cg_inttostr(Data));
+		return;
+	}
+}
+void cge_stbmii(unsigned long long Destination, unsigned char Data) {
+	if (!cgctx->Flags.GenerateAssembly) {
+		cg_emitbyte(STBMII);
+		cg_emitword(Destination, 8);
+		cg_emitword(Data, 1);
+		return;
+	}
+	else {
+		fprintf(cgctx->OutputHandle, "STHMII %s, %s\n", cg_inttostr(Destination), cg_inttostr(Data));
+		return;
+	}
+}
